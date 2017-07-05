@@ -86,8 +86,8 @@
                 <p>App for students and professors from the brazilian university Senac, on which users can check the class schedules
                     and rooms, and also be notified in case of a last-minute change, such as a professor absence or a different
                     room than usual.</p>
-                <p>Developed for iOS by Luiz Barbosa, team also had Senac teachers Prof. Thiago Claro (backend API, database
-                    and project owner) and Prof. Gabriel Andery (Android development and design).</p>
+                <p>Developed for iOS by Luiz Barbosa, team also had Senac professors Thiago Claro (backend API, database and
+                    project owner) and Gabriel Andery (Android development and design).</p>
                 <p>The development process for iOS happened between April and June of 2017, being released at the AppStore on
                     the 4th of July, 2017.</p>
                 <p>The app is available only in Portuguese for any device running iOS 9.0 or newer, and for most Android devices.
@@ -200,7 +200,7 @@
                         </li>
                     </ol>
                 </p>
-                <p>Backend has am endpoint that returns last updates for each entity, and we keep these dates inside the tables
+                <p>Backend has an endpoint that returns last updates for each entity, and we keep these dates inside the tables
                     of our local Realm database so we can compare if some tables need to be synchronized. In that case we
                     fetch the data set for that entity, replace into local database, update the reference date and notify
                     whoever holds instances or lists of that entity. For future releases it's planned to move from this endpoint
@@ -294,9 +294,36 @@
         </section>
     </div>
 
+    <section id="pictureModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Screenshot</h4>
+                </div>
+                <div class="modal-body text-center" style="padding:8px">
+                    <img id="screenshotLarge" src="" style="border:1px solid black;width:320px;height:568px" />
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a.thumbnail > img.img-thumbnail').click(function () {
+                var image = $(this).first("img").attr("src");
+                if (image === undefined) {
+                    return false;
+                }
+                $('#screenshotLarge').attr('src', image);
+                $('#pictureModal').modal();
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>
