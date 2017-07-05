@@ -17,6 +17,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript">
+        var screenshots = [];
+        for (var i = 0; i <= 21; i++) {
+            screenshots.push('images/Senac/' + i + '.png');
+        }
+    </script>
+
     <style>
         .downloads li:first-child {
             text-align: left;
@@ -249,21 +256,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script type="text/javascript">
-        var screenshots = [];
-        for (var i = 0; i <= 21; i++) {
-            screenshots.push('images/Senac/' + i + '.png');
+        function createThumbnailTable() {
+            screenshots.forEach(function (image) {
+                var imageLi = $(".thumbnail-template").clone();
+                imageLi.removeClass("thumbnail-template");
+                imageLi.find("img").attr("src", image);
+                $(".thumbnail-template").parent().append(imageLi);
+            });
+
+            $(".thumbnail-template").remove();
         }
 
-        screenshots.forEach(function (image) {
-            var imageLi = $(".thumbnail-template").clone();
-            imageLi.removeClass("thumbnail-template");
-            imageLi.find("img").attr("src", image);
-            $(".thumbnail-template").parent().append(imageLi);
-        });
-
-        $(".thumbnail-template").remove();
-
-        $(document).ready(function () {
+        function bindScreenshotPopup() {
             $('a.thumbnail > img.img-thumbnail').click(function () {
                 var image = $(this).first("img").attr("src");
                 if (image === undefined) {
@@ -273,6 +277,11 @@
                 $('#pictureModal').modal();
                 return false;
             });
+        }
+
+        $(document).ready(function () {
+            createThumbnailTable();
+            bindScreenshotPopup();
         });
     </script>
 </body>
