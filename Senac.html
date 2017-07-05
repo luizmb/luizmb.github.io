@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <title>Meu Horário - Senac</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .downloads li:first-child {
+            text-align: left;
+            margin: 0;
+        }
+
+        .downloads li:last-child {
+            text-align: right;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .downloads li:first-child {
+                text-align: right;
+                margin: 12px 0;
+            }
+
+            .downloads li:last-child {
+                text-align: right;
+                margin: 12px 0;
+            }
+        }
+    </style>
+</head>
+
+<body style="padding-top: 70px">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="#">iO&#423; <small>.lu</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li class="active"><a href="#senac">Senac</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="row jumbotron">
+            <section class="col-xs-12 col-sm-9">
+                <h1>Meu Hor&aacute;rio</h1>
+                <h2>Centro Universitário Senac</h2>
+            </section>
+            <section class="col-xs-12 col-sm-3">
+                <ul class="row list-inline downloads">
+                    <li class="col-xs-6 col-sm-12"><a href='http://senac.ioz.lu'><img alt='Get it on the AppStore' src='https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg' style="width:153px;height:46px;"/></a></li>
+                    <li class="col-xs-6 col-sm-12"><a href='https://play.google.com/store/apps/details?id=tsi.senac.gradehoraria&utm_source=ioz.lu&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='images/playstore_badge.png' style="height: 46px"/></a></li>
+                </ul>
+            </section>
+        </section>
+
+        <article class="panel panel-primary">
+            <h3 class="panel-heading panel-title">What? Why?</h3>
+            <div class="panel-body">
+                <p>App for students and professors from the brazilian university Senac, on which users can check the class schedules
+                    and rooms, and also be notified in case of a last-minute change, such as a professor absence or a different
+                    room than usual.</p>
+                <p>Developed for iOS by Luiz Barbosa, team also had Senac teachers Prof. Thiago Claro (backend API, database
+                    and project owner) and Prof. Gabriel Andery (Android development and design).</p>
+                <p>The development process for iOS happened between April and June of 2017, being released at the AppStore on
+                    the 4th of July, 2017.</p>
+                <p>The app is available only in Portuguese for any device running iOS 9.0 or newer, and for most Android devices.
+            </div>
+        </article>
+
+        <article class="panel panel-primary">
+            <h3 class="panel-heading panel-title">Technical Details</h3>
+            <div class="panel-body">
+                <p>iOS version was developed fully in Swift 3.0 and Xcode 8.3.3 using Fastlane tools for automation and Carthage
+                    as package manager.</p>
+                <p>The third-party libraries and tools used were:
+                    <ol>
+                        <li><b>Alamofire</b>: for all HTTPS requests, but not for JSON parsing due to the complex deserialization
+                            rules;
+                        </li>
+                        <li><b>Realm</b>: local database keeping the list of courses, semesters and messages;</li>
+                        <li><b>SimulatorStatusMagic</b>: for nice AppStore screenshots;</li>
+                        <li><b>ENSwiftSideMenu</b>: most of this side menu code was rewritten, however the basic idea is still
+                            there, and also its blur effects;</li>
+                        <li><b>Acknowledgements</b>: script that generates a plist from LICENSE files on disk, helpful for "About"
+                            screens;
+                        </li>
+                        <li><b>SwiftGen</b>: nice code generation tool, ideal for creating enums out of AssetCatalog's UIImage,
+                            UIFont, colors, Localizable Strings and much more.</li>
+                        <li><b>Crashlytics</b>: crash logs.</li>
+                    </ol>
+                </p>
+                <p>The app was split in several layers:
+                    <ol>
+                        <li><b>Model layer</b>: has some Plain-Old-Swift-Objects and some subclasses of RealmObject, having protocols
+                            for all of them to make the library totally decoupled.</li>
+                        <li><b>Service layer</b>: is divided in different categories, such as:
+                            <ol>
+                                <li>RemoteService: the backend-API client</li>
+                                <li>LocalService: local storage containers</li>
+                                <li>SyncService: responsible for keeping LocalService and RemoteService in sync, acting as a
+                                    proxy for every entity access and using cached version (Realm) while a remote version
+                                    is being requested if needed, and notifying about local changes if a newer version is
+                                    fetched from the web</li>
+                                <li>JsonParser: entity mapping for parsing the document body in every request.</li>
+                            </ol>
+                        </li>
+                        <li><b>Dependency injection layer</b>: maps protocols to concrete class factories, setting the strategy
+                            (singleton, local instance) and using protocol extension to inject the dependencies, inspired
+                            by the first approach of <a href="http://www.danielhall.io/a-swift-y-approach-to-dependency-injection"
+                                target=_blank>this article here.</a></li>
+                        <li><b>Coordinator layer</b>: this layer replaces the usual navigation in an iOS app and keeps a slighly
+                            different lifecycle that usually iOS apps have. There are several articles explaining Coordinator
+                            pattern, but I have my own version of it which is serving me pretty well for all my apps and
+                            I will write more about that in the future. In this app I also tried something new that worked
+                            really well: inspired by <a href="https://talk.objc.io/episodes/S01E49-deep-linking-at-kickstarter"
+                                target=_blank>the amazing Swift Talk episode #49, about Kickstarter Deep Linking strategy</a>,
+                            I created navigation router as a tree of enums, some methods that can find the best route between
+                            two points and then Coordinators can tell if they know how to handle a destination or they delegate
+                            this task for their parent ones. Doing that, I can deal with deep linking, push notification
+                            and 3D Touch starts pretty well, regardless whether or not the app is currently open and in a
+                            deep level. Coordinators then will take care of proper UIViewController stack. Coordinators are
+                            also responsible for the transition between two ViewControllers, but the animation itself will
+                            be inside the UIView and the Coordinator will only check if any of the transition members implements
+                            the protocol for entrance or exit action, and in that case, tells that class to trigger whatever
+                            it wants to trigger, like an animation.
+                        </li>
+                        <li><b>ViewController layer</b>: no routing code is allowed here, no hardcoded dependencies (only injected
+                            ones by using ghost protocols), and also no User Interface code, which means colors, animations,
+                            sizes. Also, no business workflow happens here, they should be inside Model or Service layers.
+                            ViewControllers are basically Thin Controller that glue everything but doing no real job. They
+                            own UIViews, other child ViewControllers, and they are owned by Coordinators. They are not aware
+                            of coordinator and they don't have any explicit property pointing to coordinators, but they usually
+                            have a Delegate weak property of type "MyViewControllerDelegate" and, usually, they are pointing
+                            to Coordinators. But ViewControllers don't know that. In case of tables or collection views,
+                            ViewControllers are also not allowed to be DataSource for those, once we have a layer to handle
+                            that.
+                        </li>
+                        <li><b>DataSource layer</b>: There are two kinds of classes here:
+                            <ol>
+                                <li>DataProvider: no UIKit specific code, so it's basically a 2D data set with sections vs. rows,
+                                    texts and objects for a combination of them. It's generic, so the objects can be of any
+                                    kind, but strongly-typed. Doesn't know anything about TableView, CollectionView or any
+                                    UIKit code, and for that reason is easier to be tested and can be reused by two different
+                                    DataSources, one TableViewDataSource and another CollectionViewDataSource.</li>
+                                <li>DataSource: it's the class that implements UICollectionViewDataSource or UITableViewDataSource.
+                                    It holds a DataProvider and returns row and section count directly from the DataProvider.
+                                    However, when a cell for an index path is requested, it asks DataProvider for the model
+                                    object but does the "dequeue cell" job and then binds data into the cell.</li>
+                            </ol>
+                        </li>
+                        <li><b>View layer</b>: coordinator pattern works well with Storyboards but not very well with segues.
+                            It works but actually you lose your flexibility and most of Coordinator pattern benefits. Storyboards
+                            also bring some other problems, such as merge conflicts and worse change log compared to multiple
+                            files for each view. For that reason I usually prefer XIBs over Storyboards, and usually several
+                            small reusable views composing a top-level one, or in other words, spreading one screen in multiple
+                            XIB files, some of them I can even reuse among different projects. Each XIB has a peer class
+                            that inherits UIView or other controls such as UITableView, UIButton, UILabel, UICollectionViewCell
+                            and so on. Important here: IBOutlet and IBAction are linked to the UIView class, not to the ViewController,
+                            and they are
+                            <u>ALWAYS PRIVATE</u>. That means two things:
+                            <ol>
+                                <li>Every View class has a delegate protocol for reporting its events to whoever may concern,
+                                    such as ViewControllers;
+                                </li>
+                                <li>Every View class has one or more methods called "update with". Parameters allowed for these
+                                    "update" functions are: native types or ViewModels. A ViewModel should be value type
+                                    (enum or struct) and only hold other native or ViewModel types, although a deep tree
+                                    is not really recommended. Last but not least, dates and numbers should be passed as
+                                    strings, already with the proper formatting, from the ViewController, regardless if update
+                                    function receives the String or a ViewModel containing the String. A View should never
+                                    know how to format or translate strings.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </p>
+                <p>Backend has am endpoint that returns last updates for each entity, and we keep these dates inside the tables
+                    of our local Realm database so we can compare if some tables need to be synchronized. In that case we
+                    fetch the data set for that entity, replace into local database, update the reference date and notify
+                    whoever holds instances or lists of that entity. For future releases it's planned to move from this endpoint
+                    to a native HTTP caching mechanism, such as HTTP Etag or HTTP Last-Modified.</p>
+                <p>All endpoints are read-only, use GET method and return JSON documents. Several improvements are planned for
+                    future versions regarding HTTP communication.</p>
+            </div>
+        </article>
+
+        <article class="panel panel-primary">
+            <h3 class="panel-heading panel-title">Curiosities</h3>
+            <div class="panel-body">
+                <p>Some facts about the project:</p>
+                <ul>
+                    <li>The codename for the project was "HogWalkerRing" due to the fact of Gabriel, Thiago and Luiz being, respectively,
+                        huge fans of Harry Potter, Star Wars and Lord of the Rings.</li>
+                </ul>
+            </div>
+        </article>
+
+        <section class="panel panel-primary">
+            <h3 class="panel-heading panel-title">Gallery</h3>
+            <ul class="panel-body row list-unstyled">
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/0.png"></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/1.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/2.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/3.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/4.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/5.png"></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/6.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/7.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/8.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/9.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/10.png"></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/11.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/12.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/13.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/14.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/15.png"></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/16.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/17.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/18.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/19.png"></img></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/20.png"></a>
+                </li>
+                <li class="col-xs-3 col-md-2">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/21.png"></img></a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
