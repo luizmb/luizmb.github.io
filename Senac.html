@@ -224,71 +224,8 @@
         <section class="panel panel-primary">
             <h3 class="panel-heading panel-title">Gallery</h3>
             <ul class="panel-body row list-unstyled">
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/0.png"></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/1.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/2.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/3.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/4.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/5.png"></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/6.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/7.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/8.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/9.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/10.png"></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/11.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/12.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/13.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/14.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/15.png"></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/16.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/17.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/18.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/19.png"></img></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/20.png"></a>
-                </li>
-                <li class="col-xs-3 col-md-2">
-                    <a href="#" class="thumbnail"><img class="img-thumbnail" src="images/Senac/21.png"></img></a>
+                <li class="col-xs-3 col-md-2 thumbnail-template">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src=""></a>
                 </li>
             </ul>
         </section>
@@ -312,6 +249,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script type="text/javascript">
+        var screenshots = [];
+        for (var i = 0; i <= 21; i++) {
+            screenshots.push('images/Senac/' + i + '.png');
+        }
+
+        screenshots.forEach(function (image) {
+            var imageLi = $(".thumbnail-template").clone();
+            imageLi.removeClass("thumbnail-template");
+            imageLi.find("img").attr("src", image);
+            $(".thumbnail-template").parent().append(imageLi);
+        });
+
+        $(".thumbnail-template").remove();
+
         $(document).ready(function () {
             $('a.thumbnail > img.img-thumbnail').click(function () {
                 var image = $(this).first("img").attr("src");
