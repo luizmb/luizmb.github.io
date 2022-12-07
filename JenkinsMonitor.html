@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <title>Jenkins Monitor for Apple TV</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        var screenshots = [];
+        for (var i = 0; i <= 4; i++) {
+            screenshots.push('images/jenkins-monitor/' + i + '.png');
+        }
+    </script>
+
+    <style>
+        .downloads li:first-child {
+            text-align: left;
+            margin: 0;
+        }
+
+        .downloads li:last-child {
+            text-align: right;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .downloads li:first-child {
+                text-align: right;
+                margin: 12px 0;
+            }
+
+            .downloads li:last-child {
+                text-align: right;
+                margin: 12px 0;
+            }
+        }
+    </style>
+</head>
+
+<body style="padding-top: 70px">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="#">iOS<small>.lu</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="Senac.html">Senac</a></li>
+                    <li><a href="HERE-Whitelabel.html">HERE Whitelabel</a></li>
+                    <li class="active"><a href="#jenkins-monitor">Jenkins Monitor</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="row jumbotron">
+            <section class="col-xs-12 col-sm-9">
+                <h1>Jenkins Monitor</h1>
+                <h2>for Apple TV</h2>
+            </section>
+            <section class="col-xs-12 col-sm-3">
+                <ul class="row list-inline downloads">
+                    <li class="col-xs-6 col-sm-12"><a href='https://github.com/luizmb/Jenkins-Monitor-tvOS' target=_blank><img src="images/github.png" /></a></li>
+                </ul>
+            </section>
+        </section>
+
+        <article class="panel panel-primary">
+            <h3 class="panel-heading panel-title">What? Why?</h3>
+            <div class="panel-body">
+                <p>When I was working at HERE Maps, every room had a TV with an Apple TV connected so we could use AirPlay to make app presentations or share the screen of a Macbook during the Daily or Planning.</p>
+                <p>These TVs also had a Raspberry Pi connected to another HDMI port and showing the Jenkins Monitor in a browser during the day, so we could quickly monitor when a build was broken.</p>
+                <p>In my free time I decided to develop this simple Jenkins Monitor app so we could get rid of the Raspberry Pi (and its keyboard + mouse) and use exclusively the Apple TV.</p>
+            </div>
+        </article>
+
+        <article class="panel panel-primary">
+            <h3 class="panel-heading panel-title">Technical Details</h3>
+            <div class="panel-body">
+                <p>This is a very simple app, developed in a couple of hours and has absolutely no intention to be robust or fail-proof.</p>
+                <p>It doesn't use good practices or has any tests, the intention was solving a specific problem using the least amount of my private time as possible. It was also my first Apple TV app, so learning a bit of tvOS in the process was fun.</p>
+                <p>The app ran for at least a couple of weeks in our office room, but as I was leaving HERE Maps at that point, I don't know for how long it was used.</p>
+                <p>Later the repository <a href="https://github.com/nicoduj/Jenkins-Monitor-tvOS" target=_blank>was forked</a> and another developer added Travis support, and also a new design.</p>
+                <p>It was a fun project to make while learning tvOS, it could be useful too. It's certainly not mission-critical but hopefully it proves that a pragmatic approach sometimes is enough to accomplish small goals in a very limited amount of time.</p>
+            </div>
+        </article>
+
+        <section class="panel panel-primary">
+            <h3 class="panel-heading panel-title">Gallery</h3>
+            <ul class="panel-body row list-unstyled">
+                <li class="col-xs-3 col-md-2 thumbnail-template">
+                    <a href="#" class="thumbnail"><img class="img-thumbnail" src=""></a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <section id="pictureModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Screenshot</h4>
+                </div>
+                <div class="modal-body text-center" style="padding:8px">
+                    <img id="screenshotLarge" src="" style="border:1px solid black;width:536px;height:337px" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function createThumbnailTable() {
+            screenshots.forEach(function (image) {
+                var imageLi = $(".thumbnail-template").clone();
+                imageLi.removeClass("thumbnail-template");
+                imageLi.find("img").attr("src", image);
+                $(".thumbnail-template").parent().append(imageLi);
+            });
+
+            $(".thumbnail-template").remove();
+        }
+
+        function bindScreenshotPopup() {
+            $('a.thumbnail > img.img-thumbnail').click(function () {
+                var image = $(this).first("img").attr("src");
+                if (image === undefined) {
+                    return false;
+                }
+                $('#screenshotLarge').attr('src', image);
+                $('#pictureModal').modal();
+                return false;
+            });
+        }
+
+        $(document).ready(function () {
+            createThumbnailTable();
+            bindScreenshotPopup();
+        });
+    </script>
+</body>
+
+</html>
